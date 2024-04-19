@@ -1,0 +1,62 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}{{product.car_name}}{% endblock %}
+{% block content %}
+        <p class="main-header">{{product.car_name}}</p>
+        <button data-favorite = "{{product.pk}}" class="ibtn" style="{% if isFavorite == True %}color:red;{% endif %}margin-top:-55px;margin-bottom:20px;"><span class="material-icons">favorite</span></button>
+        {% if product.car_seller.email == user.email %}
+        <a href="/products/edit/{{product.pk}}" class="ibtn" style="margin-top:-65px;margin-left:60px;margin-bottom:20px;"><span class="material-icons">edit</span></a>
+        <a href="?delete" class="ibtn" style="margin-top:-65px;margin-left:120px;margin-bottom:20px;"><span class="material-icons">delete</span></a>
+        {% endif %}
+        <div class="image-slider">
+            <div class="images">
+                {% for image in car_images %}
+                {% if image.0 == 0 %}
+                <div class="image-box" data-sub id="defaultImage">
+                    <img src="{{image.1.car_image.url}}">
+                </div>
+                {% else %}
+                <div class="image-box" data-sub>
+                    <img src="{{image.1.car_image.url}}">
+                </div>
+                {% endif %}
+                {% endfor %}
+                {% if car_images_count == 1 %}
+                <div class="image-box" data-default>
+                    <img src="/static/images/logo.png">
+                </div>
+                {% endif %}
+            </div>
+            <button class="ibtn lb abtn"><span class="material-icons">arrow_forward_ios</span></button>
+            <button class="ibtn rb abtn"><span class="material-icons">arrow_back_ios</span></button>
+        </div>
+        <br>
+        <p class="main-header">الوصف</p>
+        <p style="font-size:13pt;" class="main-header">{{product.car_description}}</p>
+        <br><br>
+        <p class="main-header">المواصفات</p>
+        <br>
+        <p style="font-size:15pt;" class="value">المبلغ <span>{{product.car_price}} ر.س</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">العلامة التجارية <span>{{product.car_brand}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">نوع المركبة <span>{{product.car_type}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">نموذج السيارة <span>{{product.car_model}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">تاريخ الإصدار <span>{{product.car_model_year}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">الصيانة <span>{{product.car_maintenance}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">الحالة <span>{{product.car_status}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">الممشى <span>{{product.car_walkway}} كم</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">الحالة الداخلية <span>{{product.car_interior}}</span></p>
+        <hr>
+        <p style="font-size:15pt;" class="value">رقم الهاتف <span>{{product.phone_number}}</span></p>
+        <hr>
+        <br>
+        <br>
+        <p style="font-size:15pt;" class="value">التواصل عن طريق مسيوم<span><a href="#">التواصل</a></span></p>
+{% endblock %}

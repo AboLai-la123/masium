@@ -1,0 +1,26 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}إنشاء حساب{% endblock %}
+{% block content %}
+<div style="width:350px;margin:auto;">
+    <p class="main-header">إنشاء حساب</p>
+    <p style="text-align:right;">هل تملك حساب مسجل في الموقع؟ <a href="/authentication/login">تسجيل الدخول</a></p>
+    <br>
+    <form method="POST" data-function = "homeRedirect">
+        <div class="double-container inputs-container">
+            <div id="box2">
+                <input type="text" name="lastName" placeholder="الإسم الأخير" maxlength="50" required>
+            </div>
+            <div id="box1">
+                <input type="text" name="firstName" placeholder="الإسم الأول" maxlength="50" required>
+            </div>
+        </div>
+        <input type="email" name="email" placeholder="البريد الإلكتروني" maxlength="75" required>
+        <input type="password" name="password" placeholder="كلمة المرور" maxlength="50" required>
+        <br>
+        <br>
+        <button class="primary">إنشاء حساب</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

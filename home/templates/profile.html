@@ -1,0 +1,27 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}{{userData.first_name}} {{userData.last_name}}{% endblock %}
+{% block content %}
+<p class="main-header">{{userData.first_name}} {{userData.last_name}}</p>
+<a class="right" href="#">تعديل الملف الشخصي</a>
+<a class="left" href="#">آراء العملاء</a>
+<br>
+<br>
+<hr>
+<br>
+            <p class="sub-header">المركبات</p>
+            <div class="grid grid-4" dir="rtl">
+                {% for product in products %}
+                <div>
+                    <a href="/products/{{product.1.pk}}">
+                        <div class="image-box" style="height:130px;">
+                            <img src="{{product.0}}">
+                        </div>
+                        <div class="product-header">
+                            <p class="value">{{product.1.car_name}} <span>{{product.1.car_price}} ر.س</span></p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+{% endblock %}

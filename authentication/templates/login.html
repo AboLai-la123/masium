@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}إضافة إعلان{% endblock %}
+{% block content %}
+<div style="width:350px;margin:auto;">
+    <p class="main-header">تسجيل الدخول</p>
+    <p style="text-align:right;">لا تملك حساب؟ <a href="/authentication/signup">إنشاء حساب</a></p>
+    <br>
+    <form method="POST" data-function="homeRedirect">
+        {% csrf_token %}
+        <input type="email" placeholder="البريد الإلكتروني" maxlength="75" name="email" required>
+        <input type="password" placeholder="كلمة المرور" maxlength="50" name="password" required>
+        <br>
+        <br>
+        <button class="primary">الدخول</button>
+    </form>
+</div>
+{% endblock %}

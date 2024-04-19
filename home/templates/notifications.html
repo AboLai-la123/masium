@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}الإشعارات{% endblock %}
+{% block content %}
+<p class="main-header">الإشعارات</p>
+<hr>
+<br>
+            <div class="list-item">
+                {% for notification in notifications %}
+                <a href="{{notification.2}}">
+                    {% if notification.3 %}<div class="new"></div>{% endif %}
+                    <div class="list-item-header">{{notification.0}}</div>
+                    <div class="list-item-sub-header">{{notification.1}}</div>
+                </a>
+                <br>
+                {% endfor %}
+            </div>
+{% endblock %}

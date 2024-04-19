@@ -1,0 +1,23 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}المفضلة{% endblock %}
+{% block content %}
+<p class="main-header">المفضلة</p>
+<hr>
+<br>
+            <p class="sub-header">المركبات</p>
+            <div class="grid grid-4" dir="rtl">
+                {% for favorite in favoriteList %}
+                <div>
+                    <a href="/products/{{favorite.1.favorite_product.pk}}">
+                        <div class="image-box" style="height:130px;">
+                            <img src="{{favorite.0}}">
+                        </div>
+                        <div class="product-header">
+                            <p class="value">{{favorite.1.favorite_product.car_name}} <span>{{favorite.1.favorite_product.car_price}} ر.س</span></p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+{% endblock %}

@@ -1,0 +1,126 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}إضافة مركبة{% endblock %}
+{% block content %}
+<div style="width:350px;margin:auto;">
+    <p class="main-header">إضافة مركبة</p>
+    <br>
+    <form method="POST" data-function = "homeRedirect">
+        <input type="text" name="title" placeholder="عنوان الإعلان" maxlength="50" required>
+        <textarea name="description" placeholder="الوصف" required></textarea>
+        <br>
+        <br>
+        <label for="brand" class="right">العلامة التجارية</label>
+        <select name="brand" id="brand">
+            <option value="----------">----------</option>
+            <option value="تويوتا">تويوتا</option>
+            <option value="هونداي">هونداي</option>
+        </select>
+        <div id="carDetails" style="display:none;">
+            <br>
+            <br>
+            <label for="vehicleType" class="right">نوع المركبة</label>
+            <select name="vehicleType" id="vehicleType" style="width:100%;">
+                <option value="----------">----------</option>
+            </select>
+            <div id="carDetails2" style="display:none;">
+                <br>
+                <br>
+                <label for="model" class="right">نموذج المركبة</label>
+                <select name="model" id="model" style="width:100%;">
+                    <option value="----------">----------</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <label for="modelYear" class="right">تاريخ الإصدار</label>
+        <select name="modelYear" id="modelYear" style="width:100%;">
+            <option value="2024">2024</option>
+            <option value="2023">2023</option>
+            <option value="2022">2022</option>
+            <option value="2021">2021</option>
+            <option value="2020">2020</option>
+            <option value="2019">2019</option>
+            <option value="2018">2018</option>
+            <option value="2017">2017</option>
+            <option value="2016">2016</option>
+            <option value="2015">2015</option>
+            <option value="2014">2014</option>
+            <option value="2013">2013</option>
+            <option value="2012">2012</option>
+            <option value="2011">2011</option>
+            <option value="2010">2010</option>
+            <option value="2009">2009</option>
+            <option value="2008">2008</option>
+            <option value="2007">2007</option>
+            <option value="2006">2006</option>
+            <option value="2005">2005</option>
+            <option value="2004">2004</option>
+            <option value="2003">2003</option>
+            <option value="2002">2002</option>
+            <option value="2001">2001</option>
+            <option value="2000">2000</option>
+        </select>
+        <br>
+        <br>
+        <label for="maintenance" class="right">الصيانة</label>
+        <select name="maintenance" id="maintenance" style="width:100%;">
+            <option value="داخل الوكالة">داخل الوكالة</option>
+            <option value="خارج الوكالة">خارج الوكالة</option>
+        </select>
+        <br>
+        <br>
+        <label for="status" class="right">حالة المركبة</label>
+        <select name="status" id="status" style="width:100%;">
+            <option value="جديدة">جديدة</option>
+            <option value="صدمات خفيفة">صدمات خفيفة</option>
+            <option value="صدمات قوية">صدمات قوية</option>
+        </select>
+        <br>
+        <br>
+        <label for="walkway" class="right">الممشى</label>
+        <select name="walkway" id="walkway" style="width:100%;">
+            <option value="10000">0 - 10000 كم</option>
+            <option value="50000">10001 - 50000 كم</option>
+            <option value="100000">50001 - 100000 كم</option>
+            <option value="150000">100001 - 150000 كم</option>
+            <option value="200000">150001 - 200000 كم</option>
+            <option value="300000">200001 - 300000 كم</option>
+            <option value="400000">300001 - 400000 كم</option>
+        </select>
+        <br>
+        <br>
+        <label for="interior" class="right">داخلية المركة</label>
+        <select name="interior" id="interior" style="width:100%;">
+            <option value="جديدة">جديدة</option>
+            <option value="شبه جديدة">شبه جديدة</option>
+            <option value="متوسطة">متوسطة</option>
+            <option value="قديمة">قديمة</option>
+        </select>
+        <br>
+        <br>
+        <input type="text" name="phoneNumber" placeholder="رقم الهاتف" maxlength="10" required>
+        <br>
+        <br>
+        <p class="value">المبلغ المستحق للمركبة <span><span id="price">0.00</span>ر.س</span></p>
+        <br>
+        <br>
+
+        <p class="sub-header">الصور</p>
+
+        <button type="button" data-for="pickImage" style="margin-top:-40px;" class="ibtn"><span class="material-icons">add</span></button>
+
+        <input type="file" id="pickImage" accept="image/*" hidden>
+
+        <div class="grid grid-2" dir="rtl" id="images">
+        </div>
+
+
+        <br>
+        <br>
+        <button class="primary">حفظ</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

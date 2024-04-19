@@ -1,0 +1,117 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}تعديل بيانات مركبة{% endblock %}
+{% block content %}
+<div style="width:350px;margin:auto;">
+    <p class="main-header">تعديل بيانات مركبة</p>
+    <br>
+    <form method="POST" data-function = "profileRedirect">
+        <input type="text" name="title" value="{{product.car_name}}" placeholder="عنوان الإعلان" maxlength="50" required>
+        <textarea name="description" placeholder="الوصف" required>{{product.car_description}}</textarea>
+        <br>
+        <br>
+        <label for="brand" class="right">العلامة التجارية</label>
+        <select name="brand" id="brand">
+            <option value="----------">----------</option>
+            <option value="تويوتا" {% if product.car_brand == "تويوتا" %}selected{% endif %}>تويوتا</option>
+            <option value="هونداي" {% if product.car_brand == "هونداي" %}selected{% endif %}>هونداي</option>
+        </select>
+        <div id="carDetails">
+            <br>
+            <br>
+            <label for="vehicleType" class="right">نوع المركبة</label>
+            <select name="vehicleType" id="vehicleType" style="width:100%;">
+                <option value="----------">----------</option>
+                {% for vehicle in vehicleTypes %}<option value="{{vehicle}}" {% if vehicle == product.car_type %}selected{% endif %}>{{vehicle}}</option>
+                {% endfor %}
+            </select>
+            <div id="carDetails2">
+                <br>
+                <br>
+                <label for="model" class="right">نموذج المركبة</label>
+                <select name="model" id="model" style="width:100%;">
+                    <option value="----------">----------</option>
+                    {% for model in models %}<option value="{{model}}" {% if model == product.car_model %}selected{% endif %}>{{model}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <br>
+        <br>
+        <label for="modelYear" class="right">تاريخ الإصدار</label>
+        <select name="modelYear" id="modelYear" style="width:100%;">
+            {% for year in years %}
+            <option value="{{year}}" {% if product.car_model_year == year %}selected{% endif %}>{{year}}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <label for="maintenance" class="right">الصيانة</label>
+        <select name="maintenance" id="maintenance" style="width:100%;">
+            <option value="داخل الوكالة" {% if product.car_maintenance == "داخل الوكالة" %}selected{% endif %}>داخل الوكالة</option>
+            <option value="خارج الوكالة" {% if product.car_maintenance == "خارج الوكالة" %}selected{% endif %}>خارج الوكالة</option>
+        </select>
+        <br>
+        <br>
+        <label for="status" class="right">حالة المركبة</label>
+        <select name="status" id="status" style="width:100%;">
+            <option {% if product.car_status == "جديدة" %}selected{% endif %} value="جديدة">جديدة</option>
+            <option {% if product.car_status == "صدمات خفيفة" %}selected{% endif %} value="صدمات خفيفة">صدمات خفيفة</option>
+            <option {% if product.car_status == "صدمات قوية" %}selected{% endif %} value="صدمات قوية">صدمات قوية</option>
+        </select>
+        <br>
+        <br>
+        <label for="walkway" class="right">الممشى</label>
+        <select name="walkway" id="walkway" style="width:100%;">
+            <option {% if product.car_walkway == 10000 %}selected{% endif %} value="10000">0 - 10000 كم</option>
+            <option {% if product.car_walkway == 50000 %}selected{% endif %} value="50000">10001 - 50000 كم</option>
+            <option {% if product.car_walkway == 100000 %}selected{% endif %} value="100000">50001 - 100000 كم</option>
+            <option {% if product.car_walkway == 150000 %}selected{% endif %} value="150000">100001 - 150000 كم</option>
+            <option {% if product.car_walkway == 200000 %}selected{% endif %} value="200000">150001 - 200000 كم</option>
+            <option {% if product.car_walkway == 300000 %}selected{% endif %} value="300000">200001 - 300000 كم</option>
+            <option {% if product.car_walkway == 400000 %}selected{% endif %} value="400000">300001 - 400000 كم</option>
+        </select>
+        <br>
+        <br>
+        <label for="interior" class="right">داخلية المركة</label>
+        <select name="interior" id="interior" style="width:100%;">
+            <option {% if product.car_interior == "جديدة" %}selected{% endif %} value="جديدة">جديدة</option>
+            <option {% if product.car_interior == "شبه جديدة" %}selected{% endif %} value="شبه جديدة">شبه جديدة</option>
+            <option {% if product.car_interior == "متوسطة" %}selected{% endif %} value="متوسطة">متوسطة</option>
+            <option {% if product.car_interior == "قديمة" %}selected{% endif %} value="قديمة">قديمة</option>
+        </select>
+        <br>
+        <br>
+        <input type="text" name="phoneNumber" placeholder="رقم الهاتف" value="{{product.phone_number}}" maxlength="10" required>
+        <br>
+        <br>
+        <p class="value">المبلغ المستحق للمركبة <span><span id="price">{{product.car_price}}</span>ر.س</span></p>
+        <br>
+        <br>
+
+        <p class="sub-header">الصور</p>
+
+        <button type="button" data-for="pickImage" style="margin-top:-40px;" class="ibtn"><span class="material-icons">add</span></button>
+
+        <input type="file" id="pickImage" accept="image/*" hidden>
+
+        <div class="grid grid-2" dir="rtl" id="images">
+            {% for car_image in car_images %}
+            <div class="image-box" id="imageBoxO{{car_image.pk}}">
+                <img src="{{car_image.car_image.url}}">
+                <button type="button" data-dclose="{{car_image.pk}}" class="ibtn" style="margin-top: -145px; margin-left: -115px; position: absolute;">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            {% endfor %}
+            <input type="hidden" name="deletedImages" id="deletedImages">
+        </div>
+
+
+        <br>
+        <br>
+        <button class="primary">حفظ</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}
