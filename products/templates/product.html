@@ -58,5 +58,30 @@
         <hr>
         <br>
         <br>
-        <p style="font-size:15pt;" class="value">التواصل عن طريق مسيوم<span><a href="#">التواصل</a></span></p>
+        {% if user.pk != product.car_seller.pk %}
+        <p style="font-size:15pt;" class="value">التواصل عن طريق مسيوم<span><a href="/chat/new/{{product.car_seller.pk}}">التواصل</a></span></p>
+        <br>
+        <p style="font-size:15pt;" class="value">البائع<span><a href="/profile?user_id={{product.car_seller.pk}}">الملف الشخصي</a></span></p>
+        <br>
+        <br>
+        {% endif %}
+        {% if is_authenticated %}
+        <form method = "POST" id="rateForm" data-function="createRate">
+            <textarea placeholder="محتوى التعليق" name="content" id="content" required></textarea>
+            {% csrf_token %}
+            <button class="primary" style="margin-top:10px;">إرسال</button>
+        </form>
+        <input type="hidden" id="sender" value="{{user.pk}}">
+        <input type="hidden" id="senderName" value="{{user.first_name}} {{user.last_name}}">
+        {% endif %}
+        <p class="sub-header">التعليقات</p>
+        <div class="list-item" id="ratings">
+            {% for rate in ratings %}
+            <a href="/profile?user_id={{rate.rate_sender.pk}}">
+                <div class="list-item-header">{{rate.rate_sender.first_name}} {{rate.rate_sender.last_name}}</div>
+                <div class="list-item-sub-header">{{rate.rate_content}}</div>
+            </a>
+            <br>
+            {% endfor %}
+        </div>
 {% endblock %}

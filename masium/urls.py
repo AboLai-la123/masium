@@ -10,5 +10,6 @@ urlpatterns = [
     path('authentication/',include('authentication.urls',namespace="Authentication")),
     path('cars/',include('cars.urls',namespace="Cars")),
     path('products/',include('products.urls',namespace="Products")),
+    path('chat/',include('chat.urls',namespace="Chat")),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 urlpatterns += staticfiles_urlpatterns()

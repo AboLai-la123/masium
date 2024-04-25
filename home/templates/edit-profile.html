@@ -1,0 +1,18 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}تعديل بيانات الملف الشخصي{% endblock %}
+{% block content %}
+<div style="width:350px;margin:auto;">
+    <p class="main-header">تعديل بيانات الملف الشخصي</p>
+    <br>
+    <form method="POST" data-function = "profileRedirect">
+        <input type="text" name="firstName" placeholder="الإسم الأول" maxlength="50" value="{{user.first_name}}" required>
+        <input type="text" name="lastName" placeholder="الإسم الأخير" maxlength="50" value="{{user.last_name}}" required>
+        <input type="email" name="email" placeholder="البريد الإلكتروني" maxlength="75" value="{{user.email}}" required>
+        <br>
+        <br>
+        <button class="primary">حفظ</button>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

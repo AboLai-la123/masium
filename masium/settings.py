@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "authentication",
     "cars",
     "products",
+    "chat",
 ]
 
 MIDDLEWARE = [

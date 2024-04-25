@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}تقييمات {{userData.first_name}} {{userData.last_name}}{% endblock %}
+{% block content %}
+<p class="main-header">{{userData.first_name}} {{userData.last_name}}</p>
+<a class="right" href="/profile?user_id={{userData.pk}}">الملف الشخصي</a>
+<br>
+<br>
+<hr>
+<br>        
+            {% if is_authenticated %}
+            <form method = "POST" id="rateForm" data-function="createRate">
+                <textarea placeholder="المحتوى" name="content" id="content" required></textarea>
+                {% csrf_token %}
+                <button class="primary" style="margin-top:10px;">إرسال</button>
+            </form>
+            {% endif %}
+            <p class="sub-header">التقييمات</p>
+            <div class="list-item" id="ratings">
+                {% for rate in ratings %}
+                <a href="/profile?user_id={{rate.rate_sender.pk}}">
+                    <div class="list-item-header">{{rate.rate_sender.first_name}} {{rate.rate_sender.last_name}}</div>
+                    <div class="list-item-sub-header">{{rate.rate_content}}</div>
+                </a>
+                <br>
+                {% endfor %}
+            </div>
+            <input type="hidden" value = "{{mainUser.pk}}" id="sender">
+            <input type="hidden" value = "{{mainUser.first_name}} {{mainUser.last_name}}" id="senderName">
+{% endblock %}

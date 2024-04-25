@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block title %}المحادثات{% endblock %}
+{% block content %}
+<div class="chat-box">
+    <div></div>
+    <div class="rooms">
+        <p class="sub-header">المحادثات</p>
+        <br>
+
+        <div class="list">
+            {% for room in rooms %}
+            <div class="list-item">
+                <a class="list-item-header right" href="{{room.pk}}">{{room.user2.first_name}} {{room.user2.last_name}}</a>
+                <br>
+                <br>
+                <div class="list-item-sub-header">{{room.room_last_message}}</div>
+                <p class="new-messages">{{room.room_new_messages}}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

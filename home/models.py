@@ -35,6 +35,14 @@ class Notification(models.Model):
     notification_link = models.CharField(max_length=100)
     notification_is_new = models.BooleanField(default=True)
 
+class Rating(models.Model):
+    rate_sender = models.ForeignKey(User, on_delete=models.CASCADE,related_name='rateSender')
+    rate_user   = models.ForeignKey(User, on_delete=models.CASCADE,related_name='rateUser')
+    rate_content = models.TextField()
+
+    def __str__(self):
+        return self.rate_content
+
 def formChecker(inputs):
     a, errtitle = "work",""
     for i in inputs:

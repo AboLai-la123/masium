@@ -3,8 +3,12 @@
 {% block title %}{{userData.first_name}} {{userData.last_name}}{% endblock %}
 {% block content %}
 <p class="main-header">{{userData.first_name}} {{userData.last_name}}</p>
-<a class="right" href="#">تعديل الملف الشخصي</a>
-<a class="left" href="#">آراء العملاء</a>
+{% if mainUser.email == userData.email %}
+<a class="right" href="/edit-profile">تعديل الملف الشخصي</a>
+<a class="left" href="/ratings?user_id={{userData.pk}}">آراء العملاء</a>
+{% else %}
+<a class="right" href="/ratings?user_id={{userData.pk}}">آراء العملاء</a>
+{% endif %}
 <br>
 <br>
 <hr>

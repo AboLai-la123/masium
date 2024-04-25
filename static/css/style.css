@@ -13,6 +13,8 @@ nav{
     height:200px;
     border-bottom:1px solid #ccc;
     margin-bottom:100px;
+    overflow:hidden;
+    transition-duration: .2s;
 }
 nav > a{
     display:block;
@@ -28,7 +30,7 @@ nav > a img{
 .links{
     width:90%;
     margin:auto;
-    max-width:500px;
+    max-width:600px;
     display:flex;
     justify-content: center;
 }
@@ -375,4 +377,121 @@ form > input, form > select, form > textarea, form > label{
     height:10px;
     border-radius:10px;
     margin-top:20px;
+}
+
+.search-btn{
+    width:50px;
+    height:50px;
+    background-color:none;
+    border:0px;
+    float:right;
+    margin-top:-105px;
+    margin-right:20px;
+}
+
+.search-input{
+    margin:auto;
+    display:block;
+    width:100%;
+    max-width:500px;
+    margin-top:25px;
+}
+
+.filter-list{
+    width:160px;
+    float:right;
+    margin-right:-160px;
+    direction: rtl;
+}
+.filter-header{
+    font-size:17pt;
+}
+.filter-sub-header{
+    font-size:12pt;
+    color:#444;
+    margin-top:20px;
+}
+
+.chat-box{
+    width:1000px;
+    margin-left:-150px;
+    border:1px solid #ccc;
+    height:500px;
+    display:grid;
+    grid-template-columns: auto 25%;
+}
+
+
+.rooms{
+    padding:10px;
+    border-left:1px solid #ccc;
+}
+
+.rooms .list-item-header{
+    font-size:14pt;
+}
+.rooms .list-item-sub-header{
+    font-size:10pt;
+}
+
+.chat{
+    display:grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 70px auto 60px;
+}
+
+.chat-header{
+    width:100%;
+    float:right;
+    text-align:right;
+    padding:20px;
+    height:70px;
+    font-size:15pt;
+    border-bottom:1px solid #ccc;
+}
+
+.chat-container{
+    border-bottom:1px solid #ccc;
+    overflow:auto;
+    height:370px;
+}
+
+.text-user-1{
+    padding:5px;
+    border-radius:5px;
+    font-size:12pt;
+    margin:20px;
+    float:right;
+    background-color:rgb(203, 241, 240);
+    border:1px solid #ccc;
+}
+.width-100{
+    width:100%;
+    float:left;
+}
+
+.text-user-2{
+    padding:5px;
+    border-radius:5px;
+    font-size:12pt;
+    margin:20px;
+    float:left;
+    border:1px solid #ccc;
+}
+
+.new-messages{
+    background: red;
+    border-radius:50%;
+    width:20px;
+    height:20px;
+    color:white;
+    text-align:center;
+    font-size: 9pt;
+    padding-top:3px;
+    margin-top:-20px;
+    float:left;
+}
+
+#chatForm{
+    padding-inline:10px;
 }

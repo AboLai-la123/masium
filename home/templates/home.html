@@ -21,12 +21,15 @@
                         <p class="follow-notifi">{{notificationCount}}</p>
                         {% endif %}</a>
                     <a href="/cars/add-car">إضافة إعلان</a>
+                    <a href="/chat/">المحادثات</a>
                 {% else %}
                     <a href="#">من نحن</a>
                     <a href="/authentication/signup">إنشاء حساب</a>
                     <a href="/authentication/login">تسجيل الدخول</a>
                 {% endif %}
             </div>
+            <input type="text" class="search-input" placeholder="البحث">
+            <button class="ibtn search-btn"><span class="material-icons">search</span></button>
         </nav>
         <main>
             {% block content %}
@@ -35,22 +38,22 @@
             <p class="sub-header">التصنيفات</p>
             <div class="grid grid-4" dir="rtl">
                 <div class="image-box">
-                    <a href="/تويوتا">
+                    <a href="/c/تويوتا">
                         <img src="{% static 'images/toyota.png' %}">
                     </a>
                 </div>
                 <div class="image-box">
-                    <a href="/هونداي">
+                    <a href="/c/هونداي">
                         <img src="{% static 'images/hyundai.png' %}">
                     </a>
                 </div>
                 <div class="image-box">
-                    <a href="#">
+                    <a href="/c/جمس">
                         <img src="{% static 'images/gmc.jpg' %}">
                     </a>
                 </div>
                 <div class="image-box">
-                    <a href="#">
+                    <a href="/c/فورد">
                         <img src="{% static 'images/ford.jpg' %}">
                     </a>
                 </div>

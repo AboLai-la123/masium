@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>مسيوم | {% block title %}{{search}}{% endblock %}</title>
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    </head>
+    <body>
+        <nav>
+            <a href="/"><img src="{% static 'images/logo.png' %}"></a>
+            <div class="links">
+                {% if is_authenticated %}
+                    <a href="/authentication/logout">تسجيل الخروج</a>
+                    <a href="/profile">الملف الشخصي</a>
+                    <a href="/favorite">المفضلة<p class="follow-notifi">{{favoriteCount}}</p></a>
+                    <a href="/notifications">الإشعارات{% if notificationCount != 0 %}
+                        <p class="follow-notifi">{{notificationCount}}</p>
+                        {% endif %}</a>
+                    <a href="/cars/add-car">إضافة إعلان</a>
+                {% else %}
+                    <a href="#">من نحن</a>
+                    <a href="/authentication/signup">إنشاء حساب</a>
+                    <a href="/authentication/login">تسجيل الدخول</a>
+                {% endif %}
+            </div>
+            <input type="text" class="search-input" placeholder="البحث">
+            <button class="ibtn search-btn"><span class="material-icons">search</span></button>
+        </nav>
+        <main>
+            {% block content %}
+            <div class="filter-list">
+                <p class="filter-header">التصفية</p>
+
+                <p class="filter-sub-header">الترتيب</p>
+                <a href="?low-to-high">من الأدنى إلى الأعلى</a>
+                <br>
+                <a href="?high-to-low">من الأعلى إلى الأدنى</a>
+
+                <p class="filter-sub-header">العلامة التجارية</p>{% for brand in brands %}
+                <a href="?carBrand={{brand}}">{{brand}}</a>{% endfor %}
+            </div>
+            <p dir="rtl" class="main-header">نتائج بحث '{{search}}'</p>
+            <br>
+            <p class="sub-header">المركبات</p>
+            <div class="grid grid-4" dir="rtl">
+                {% for product in products %}
+                <div>
+                    <a href="/products/{{product.1.pk}}">
+                        <div class="image-box" style="height:130px;">
+                            <img src="{{product.0}}">
+                        </div>
+                        <div class="product-header">
+                            <p class="value">{{product.1.car_name}} <span>{{product.1.car_price}} ر.س</span></p>
+                        </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            {% endblock %}
+        </main>
+        <footer>
+            <div class="link">
+                <div class="link-box">
+                    <p class="header">الراوبط الهامة</p>
+                    <a href="#">رابط 1</a>
+                    <a href="#">رابط 2</a>
+                    <a href="#">رابط 3</a>
+                    <a href="#">رابط 4</a>
+                </div>
+                <div class="link-box">
+                    <p class="header">الراوبط الهامة</p>
+                    <a href="#">رابط 1</a>
+                    <a href="#">رابط 2</a>
+                    <a href="#">رابط 3</a>
+                    <a href="#">رابط 4</a>
+                </div>
+                <div class="link-box">
+                    <p class="header">الراوبط الهامة</p>
+                    <a href="#">رابط 1</a>
+                    <a href="#">رابط 2</a>
+                    <a href="#">رابط 3</a>
+                    <a href="#">رابط 4</a>
+                </div>
+                <div class="link-box">
+                    <p class="header">الراوبط الهامة</p>
+                    <a href="#">رابط 1</a>
+                    <a href="#">رابط 2</a>
+                    <a href="#">رابط 3</a>
+                    <a href="#">رابط 4</a>
+                </div>
+                <div class="link-box">
+                    <p class="header">الراوبط الهامة</p>
+                    <a href="#">رابط 1</a>
+                    <a href="#">رابط 2</a>
+                    <a href="#">رابط 3</a>
+                    <a href="#">رابط 4</a>
+                </div>
+            </div>
+            <p class="copyright">منصة مسيوم 2024 ©</p>
+        </footer>
+
+        <div id="snackbar" class="snackbar"><p id="snackbarText"></p></div>
+        <script src="{% static 'js/jQuery.js' %}"></script>
+        <script src="{% static 'js/script.js' %}"></script>
+    </body>
+</html>
