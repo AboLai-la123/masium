@@ -4,6 +4,19 @@ from django.http import JsonResponse
 
 # Create your views here.
 
+def about(request):
+    context = {
+        "is_authenticated": request.user.is_authenticated,
+    }
+    if request.user.is_authenticated:
+        favorites = Favorite.objects.filter(favorite_user=request.user)
+        favoriteCount = len(favorites)
+
+        notification = Notification.objects.filter(notification_user=request.user,notification_is_new=True)
+        notificationCount = len(notification)
+        context["favoriteCount"] = favoriteCount
+        context["notificationCount"] = notificationCount
+    return render(request, "about.html", context)
 
 def category(request, brandName):
     products = []

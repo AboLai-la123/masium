@@ -815,16 +815,42 @@ function createRate(){
 	<br>
 	`);
 }
+$(document).on("change",".search-input",function(){
+	location.href = `/search/${this.value}`;
+});
 
-$(document).on("click",".search-btn",function(){
-	nav = document.querySelector("nav");
-	if(nav.style.height == "" || nav.style.height == "200px"){
-		document.querySelector("nav").style.height = "260px";
-	}else{
-		document.querySelector("nav").style.height = "200px";
+
+$(document).on("click","#searchBtn",function(){
+	document.querySelector(".search-box").style.display = "block";
+	setTimeout(function(){
+		document.querySelector(".search-box").style.backgroundColor = "rgba(167, 167, 167, .4)";
+		document.querySelector(".search-box").style.backdropFilter = "blur(5px)";
+	}, .1);
+});
+
+$(document).on("click",".search-box",function(e){
+	if(e.target.className != "search-input"){
+		document.querySelector(".search-box").style.backgroundColor = "transparent";
+		document.querySelector(".search-box").style.backdropFilter = "blur(0px)";
+		document.querySelector(".search-box").style.opacity = "0";
+		setTimeout(function(){
+			document.querySelector(".search-box").removeAttribute("style");
+		}, 200);
 	}
 });
 
-$(document).on("change",".search-input",function(){
-	location.href = `/search/${this.value}`;
+$(document).on("click","#moreBtn",function(){
+	if(document.querySelector(".menu").style.display == ""){
+		document.querySelector(".menu").style.display = "block";
+		setTimeout(function(){
+			document.querySelector(".menu").style.top = "80px";
+			document.querySelector(".menu").style.opacity = "1";
+		}, .1);
+	}else{
+		document.querySelector(".menu").style.top = "60px";
+		document.querySelector(".menu").style.opacity = "0";
+		setTimeout(function(){
+			document.querySelector(".menu").removeAttribute("style");
+		}, 200);
+	}
 });

@@ -11,27 +11,32 @@
     </head>
     <body>
         <nav>
-            <a href="/"><img src="{% static 'images/logo.png' %}"></a>
-            <div class="links">
-                {% if is_authenticated %}
-                    <a href="/authentication/logout">تسجيل الخروج</a>
-                    <a href="/profile">الملف الشخصي</a>
-                    <a href="/favorite">المفضلة<p class="follow-notifi">{{favoriteCount}}</p></a>
-                    <a href="/notifications">الإشعارات{% if notificationCount != 0 %}
-                        <p class="follow-notifi">{{notificationCount}}</p>
-                        {% endif %}</a>
-                    <a href="/cars/add-car">إضافة إعلان</a>
-                    <a href="/chat/">المحادثات</a>
-                {% else %}
-                    <a href="#">من نحن</a>
-                    <a href="/authentication/signup">إنشاء حساب</a>
-                    <a href="/authentication/login">تسجيل الدخول</a>
-                {% endif %}
+            <div class="link">
+                <a href="/"><img src="{% static 'images/logo.png' %}"></a>
+                <div class="links">
+                    {% if is_authenticated %}
+                        <a href="/notifications">الإشعارات{% if notificationCount != 0 %}
+                            <p class="follow-notifi">{{notificationCount}}</p>
+                            {% endif %}</a>
+                        <a href="/favorite">المفضلة<p class="follow-notifi">{{favoriteCount}}</p></a>
+                        <button id="searchBtn"><span class="material-icons">search</span></button>
+                        <button id="moreBtn" style="margin-left:10px;"><span class="material-icons">expand_more</span></button>
+                    {% else %}
+                        <a href="/about"><strong>من نحن</strong></a>
+                        <a href="/authentication/signup">إنشاء حساب</a>
+                        <a href="/authentication/login">تسجيل الدخول</a>
+                    {% endif %}
+                </div>
             </div>
-            <input type="text" class="search-input" placeholder="البحث">
-            <button class="ibtn search-btn"><span class="material-icons">search</span></button>
         </nav>
+        {% block body %}{% endblock %}
         <main>
+            <div class="menu">
+                <a style="border-top:1px solid #ccc;" href="/profile">الملف الشخصي</a>
+                <a href="/cars/add-car">إضافة إعلان</a>
+                <a href="/chat/">المحادثات</a>
+                <a href="/authentication/logout">تسجيل الخروج</a>
+            </div>
             {% block content %}
             <p class="main-header">الصفحة الرئيسية</p>
             <br>
@@ -82,10 +87,10 @@
             <div class="link">
                 <div class="link-box">
                     <p class="header">الراوبط الهامة</p>
-                    <a href="#">رابط 1</a>
-                    <a href="#">رابط 2</a>
-                    <a href="#">رابط 3</a>
-                    <a href="#">رابط 4</a>
+                    <a href="/about">من نحن</a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
                 </div>
                 <div class="link-box">
                     <p class="header">الراوبط الهامة</p>
@@ -122,5 +127,8 @@
         <div id="snackbar" class="snackbar"><p id="snackbarText"></p></div>
         <script src="{% static 'js/jQuery.js' %}"></script>
         <script src="{% static 'js/script.js' %}"></script>
+        <div class="search-box">
+            <input type="text" class="search-input" placeholder="البحث">
+        </div>
     </body>
 </html>
