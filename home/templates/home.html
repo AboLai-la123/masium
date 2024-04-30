@@ -25,6 +25,7 @@
                         <a href="/about"><strong>من نحن</strong></a>
                         <a href="/authentication/signup">إنشاء حساب</a>
                         <a href="/authentication/login">تسجيل الدخول</a>
+                        <button id="searchBtn"><span class="material-icons">search</span></button>
                     {% endif %}
                 </div>
             </div>
@@ -38,7 +39,11 @@
                 <a href="/authentication/logout">تسجيل الخروج</a>
             </div>
             {% block content %}
+            {% if brandName %}
+            <p class="main-header">{{brandName}}</p>
+            {% else %}
             <p class="main-header">الصفحة الرئيسية</p>
+            {% endif %}
             <br>
             <p class="sub-header">التصنيفات</p>
             <div class="grid grid-4" dir="rtl">

@@ -5,6 +5,16 @@ from django.http import JsonResponse
 from home.models import formChecker
 from django.contrib.auth import authenticate
 from django.contrib import auth
+import re
+ 
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b'
+
+def validateEmail(email):
+    print("asd")
+    if(re.fullmatch(regex, email)):
+        return False
+    else:
+        return True
 
 # Create your views here.
 
@@ -80,6 +90,15 @@ def signup(request):
             if len(emailFilter) != 0:
                 a = "no"
                 errtitle = "البريد الإلكتروني مستخدم مسبقاً"
+            elif validateEmail(request.POST["email"]):
+                a = "no"
+                errtitle = "البريد الإلكتروني غير صحيح"
+        if a == "work":
+            password_pattern = "^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$"
+            
+            if not re.match(password_pattern, request.POST["password"]):
+                a = "no"
+                errtitle = "كلمة المرور ضعيفة"
         if a == "work":
             user_create = User.objects.create_user(
                 username = request.POST["email"],

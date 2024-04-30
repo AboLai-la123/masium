@@ -587,3 +587,10 @@ form > input, form > select, form > textarea, form > label{
     font-size:31pt;
     padding-top:20px;
 }
+
+mark{
+    background-color:#bcffd8;
+}
+mark.mark-2{
+    background-color:#c3e0ff;
+}

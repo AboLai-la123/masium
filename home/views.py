@@ -25,7 +25,8 @@ def category(request, brandName):
         products.append([car_image[0].car_image.url,product])
     context = {
         "is_authenticated": request.user.is_authenticated,
-        "products": products
+        "products": products,
+        "brandName":brandName
     }
     if request.user.is_authenticated:
         favorites = Favorite.objects.filter(favorite_user=request.user)
